@@ -1,0 +1,7 @@
+type Blog {
+  id: ID!
+  accountId: ID!
+  name: String!
+  description: String
+  isActive: Boolean
+}

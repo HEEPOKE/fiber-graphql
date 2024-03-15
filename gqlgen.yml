@@ -1,0 +1,38 @@
+schema:
+  - internals/domains/schemas/*.graphqls
+
+exec:
+  filename: internals/domains/graph/generated.go
+  package: graph
+model:
+  filename: graph/model/models_gen.go
+  package: model
+resolver:
+  layout: follow-schema
+  dir: graph
+  package: graph
+  filename_template: "{name}.resolvers.go"
+
+skip_validation: false
+
+autobind:
+ - "github.com/HEEPOKE/fiber-graphql/internals/domains/models"
+
+models:
+  ID:
+    model:
+      - github.com/99designs/gqlgen/graphql.ID
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+  Int:
+    model:
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+  Account:
+    model: 
+      - github.com/HEEPOKE/fiber-graphql/internals/domains/models.Account
+  Blog:
+    model: 
+      - github.com/HEEPOKE/fiber-graphql/internals/domains/models.Blog

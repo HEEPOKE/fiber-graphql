@@ -1,0 +1,16 @@
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+type Account {
+  id: ID!
+  email: String!
+  username: String!
+  password: String
+  age: Int!
+  isActive: Boolean
+  role: Role!
+  blogs: [Blog!]!
+}

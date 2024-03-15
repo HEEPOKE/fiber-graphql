@@ -1,6 +1,6 @@
 package models
 
-type BlogModel struct {
+type Blog struct {
 	CommonColumnModel
 	AccountID   uint    `gorm:"column:account_id;type:int" json:"account_id" example:"1"`
 	Name        string  `gorm:"column:name;type:VARCHAR(255);unique;not null" json:"name" validate:"required" example:"blog"`
@@ -8,6 +8,6 @@ type BlogModel struct {
 	IsActive    *bool   `gorm:"column:is_active;default:true" json:"is_active" example:"true"`
 }
 
-func (BlogModel) TableName() string {
+func (Blog) TableName() string {
 	return "blogs"
 }

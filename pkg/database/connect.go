@@ -38,7 +38,7 @@ func ConnectDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	db.AutoMigrate(&models.AccountModel{}, &models.BlogModel{})
+	db.AutoMigrate(&models.Account{}, &models.Blog{})
 	return db, nil
 }
 

@@ -16,8 +16,8 @@ type SuccessRegisterAccountResponse struct {
 }
 
 type SuccessAccountsGetAllResponse struct {
-	Status  SuccessStatusMessage  `json:"status"`
-	PayLoad []models.AccountModel `json:"payload"`
+	Status  SuccessStatusMessage `json:"status"`
+	PayLoad []models.Account     `json:"payload"`
 }
 
 type SuccessAccountsProfileResponse struct {

@@ -1,9 +1,12 @@
 {
     "cSpell.words": [
+        "autobind",
         "dbname",
         "godotenv",
         "gofiber",
         "gorm",
+        "gqlgen",
+        "graphqls",
         "Heepoke",
         "joho",
         "keyauth",

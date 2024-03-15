@@ -2,7 +2,11 @@ package routes
 
 import (
 	"fmt"
+	"net/http"
 
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/HEEPOKE/fiber-graphql/internals/domains/graph"
 	"github.com/HEEPOKE/fiber-graphql/pkg/configs"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
@@ -60,6 +64,11 @@ func (s *Server) Init() *fiber.App {
 
 	apis := s.fib.Group("/apis")
 	apis.Get("/monitor", basicauth.New(basicAuthMiddleware), monitor.New(monitor.Config{Title: "Monitor Page"}))
+
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+
+	http.Handle("/apis", playground.Handler("GraphQL playground", "/apis/query"))
+	http.Handle("/apis/query", srv)
 
 	return s.fib
 }
