@@ -11,7 +11,7 @@ cp .env.example .env
 ## Run Project With Docker
 
 ```bash
-docker create network Heepoke
+docker network create Heepoke
 ```
 
 ```bash

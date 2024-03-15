@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  fiber-db:
+  fiber-graphql-db:
     image: postgres:latest
-    container_name: fiber-db
+    container_name: fiber-graphql-db
     ports:
       - ${DB_PORT}:${DB_PORT}
     environment:
@@ -14,7 +14,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: fiber-redis
+    container_name: fiber-graphql-redis
     hostname: redis
     env_file:
       - .env
@@ -34,7 +34,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: fiber-api
+    container_name: fiber-graphql
     env_file:
       - .env
     volumes:
@@ -43,7 +43,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     depends_on:
-      - fiber-db
+      - fiber-graphql-db
       - redis
     networks:
       - Heepoke
