@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  fiber-db:
+    image: postgres:latest
+    container_name: fiber-db
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - Heepoke
+
+  redis:
+    image: redis:latest
+    container_name: fiber-redis
+    hostname: redis
+    env_file:
+      - .env
+    command: ["redis-server", "--include", "/usr/local/etc/redis/redis.conf", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}"]
+    ports:
+     - ${REDIS_PORT}:${REDIS_PORT}
+    volumes:
+      - redis-data:/var/lib/redis
+      - "./pkg/redis/conf/generate.conf:/usr/local/etc/redis/redis.conf"
+    environment:
+      REDIS_REPLICATION_MODE: ${REDIS_REPLICATION_MODE}
+      REDIS_PASSWORD: 
+    networks:
+      - Heepoke
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fiber-api
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - fiber-db
+      - redis
+    networks:
+      - Heepoke
+
+volumes:
+  redis-data:
+
+networks:
+  Heepoke:
+    driver: bridge
