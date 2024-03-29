@@ -4,7 +4,10 @@ enum Role {
   USER
 }
 
-type Account {
+type Account
+  @goModel(
+    model: "github.com/HEEPOKE/fiber-graphql/internals/domains/models.Account"
+  ) {
   id: ID!
   email: String!
   username: String!

@@ -1,0 +1,1 @@
+directive @goModel(model: String, models: [String!]) on OBJECT | SCALAR

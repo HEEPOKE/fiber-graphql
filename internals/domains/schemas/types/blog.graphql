@@ -1,0 +1,10 @@
+type Blog
+  @goModel(
+    model: "github.com/HEEPOKE/fiber-graphql/internals/domains/models.Blog"
+  ) {
+  id: ID!
+  accountId: ID!
+  name: String!
+  description: String
+  isActive: Boolean
+}
