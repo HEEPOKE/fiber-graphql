@@ -1,5 +1,5 @@
 schema:
-  - internals/domains/schemas/*.graphqls
+  - ./internals/domains/schemas/*.graphqls
 
 exec:
   filename: internals/domains/graph/generated.go
