@@ -1,5 +1,6 @@
 schema:
-  - ./internals/domains/schemas/*.graphqls
+  - ./internals/domains/schemas/*.graphql
+  - ./internals/domains/schemas/types/**/*.graphql
 
 exec:
   filename: internals/domains/graph/generated.go
@@ -16,7 +17,7 @@ resolver:
 skip_validation: false
 
 autobind:
- - "github.com/HEEPOKE/fiber-graphql/internals/domains/models"
+  - "github.com/HEEPOKE/fiber-graphql/internals/domains/models"
 
 models:
   ID:
@@ -31,8 +32,8 @@ models:
       - github.com/99designs/gqlgen/graphql.Int64
       - github.com/99designs/gqlgen/graphql.Int32
   Account:
-    model: 
+    model:
       - github.com/HEEPOKE/fiber-graphql/internals/domains/models.Account
   Blog:
-    model: 
+    model:
       - github.com/HEEPOKE/fiber-graphql/internals/domains/models.Blog
