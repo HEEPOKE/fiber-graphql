@@ -78,8 +78,8 @@ func (s *Server) Init() *fiber.App {
 	gqlHandler := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &resolvers.Resolver{}}))
 	playgroundHandler := playground.Handler("GraphQL playground", "/apis/query")
 
-	apis.All("/playground", adaptHTTPHandler(playgroundHandler))
-	apis.All("/query", adaptHTTPHandler(gqlHandler))
+	apis.Get("/playground", adaptHTTPHandler(playgroundHandler))
+	apis.Post("/query", adaptHTTPHandler(gqlHandler))
 
 	return s.fib
 }
