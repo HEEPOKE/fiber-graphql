@@ -12,17 +12,14 @@ import (
 	"github.com/HEEPOKE/fiber-graphql/internals/domains/models"
 )
 
-// GetAllAccounts is the resolver for the getAllAccounts field.
 func (r *queryResolver) GetAllAccounts(ctx context.Context) ([]*models.Account, error) {
 	panic(fmt.Errorf("not implemented: GetAllAccounts - getAllAccounts"))
 }
 
-// GetAccount is the resolver for the getAccount field.
 func (r *queryResolver) GetAccount(ctx context.Context, id string) (*models.Account, error) {
 	panic(fmt.Errorf("not implemented: GetAccount - getAccount"))
 }
 
-// Query returns generated.QueryResolver implementation.
 func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type queryResolver struct{ *Resolver }
