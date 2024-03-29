@@ -8,6 +8,12 @@ cp .env.example .env
 
 - then update environments in .env
 
+## Install lib
+
+```bash
+go install github.com/99designs/gqlgen@latest
+```
+
 ## Run Project With Docker
 
 ```bash
