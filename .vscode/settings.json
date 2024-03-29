@@ -6,6 +6,7 @@
         "gofiber",
         "gorm",
         "gqlgen",
+        "gqlparser",
         "graphqls",
         "Heepoke",
         "joho",
