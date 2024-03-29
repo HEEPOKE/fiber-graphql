@@ -10,9 +10,9 @@ model:
   package: model
 resolver:
   layout: follow-schema
-  dir: internals/domains/generated
-  package: generated
-  filename_template: "{name}.resolvers.go"
+  dir: internals/app/resolvers
+  package: resolvers
+  filename_template: "{name}_resolvers.go"
 
 skip_validation: false
 

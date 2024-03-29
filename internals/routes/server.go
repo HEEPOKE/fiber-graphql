@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/HEEPOKE/fiber-graphql/internals/app/resolvers"
+	"github.com/HEEPOKE/fiber-graphql/internals/domains/generated"
 	"github.com/HEEPOKE/fiber-graphql/pkg/configs"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
@@ -72,12 +75,11 @@ func (s *Server) Init() *fiber.App {
 	apis := s.fib.Group("/apis")
 	apis.Get("/monitor", basicauth.New(basicAuthMiddleware), monitor.New(monitor.Config{Title: "Monitor Page"}))
 
-	// gqlHandler := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
-
+	gqlHandler := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &resolvers.Resolver{}}))
 	playgroundHandler := playground.Handler("GraphQL playground", "/apis/query")
 
 	apis.All("/playground", adaptHTTPHandler(playgroundHandler))
-	// apis.All("/query", adaptHTTPHandler(gqlHandler))
+	apis.All("/query", adaptHTTPHandler(gqlHandler))
 
 	return s.fib
 }

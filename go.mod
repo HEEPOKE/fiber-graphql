@@ -6,15 +6,21 @@ require (
 	github.com/99designs/gqlgen v0.17.45
 	github.com/joho/godotenv v1.5.1
 	github.com/redis/go-redis/v9 v9.5.1
+	github.com/vektah/gqlparser/v2 v2.5.11
 )
 
 require (
 	github.com/MicahParks/keyfunc/v2 v2.1.0 // indirect
+	github.com/agnivade/levenshtein v1.1.1 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
+	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
+	github.com/mitchellh/mapstructure v1.5.0 // indirect
+	github.com/sosodev/duration v1.2.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
 )
 
