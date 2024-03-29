@@ -1,5 +1,0 @@
-type Mutation {
-  createAccount(input: CreateAccountInput!): Account
-  updateAccount(id: ID!, input: UpdateAccountInput!): Account
-  deleteUser(id: ID!): Boolean
-}

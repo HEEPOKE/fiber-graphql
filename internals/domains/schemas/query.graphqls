@@ -1,4 +1,0 @@
-type Query {
-  getAllAccounts: [Account!]!
-  getAccount(id: ID!): Account!
-}

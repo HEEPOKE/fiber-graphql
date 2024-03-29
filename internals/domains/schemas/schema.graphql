@@ -1,4 +1,9 @@
-schema {
-    query: Query
-    mutation: Mutation
+type Query {
+  getAllAccounts: [Account!]!
+  getAccount(id: ID!): Account!
+}
+
+type Mutations {
+  createAccount(input: CreateAccountInput!): Account
+  updateAccount(id: ID!, input: UpdateAccountInput!): Account
 }
