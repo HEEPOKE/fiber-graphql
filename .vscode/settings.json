@@ -2,6 +2,7 @@
     "cSpell.words": [
         "autobind",
         "dbname",
+        "fasthttpadaptor",
         "godotenv",
         "gofiber",
         "gorm",
@@ -12,6 +13,7 @@
         "joho",
         "keyauth",
         "requestid",
-        "sslmode"
+        "sslmode",
+        "vektah"
     ]
 }

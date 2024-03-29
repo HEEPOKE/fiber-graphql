@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/HEEPOKE/fiber-graphql/internals/domains/graph"
 	"github.com/HEEPOKE/fiber-graphql/pkg/configs"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
@@ -16,6 +14,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
+	"github.com/valyala/fasthttp/fasthttpadaptor"
 	"gorm.io/gorm"
 )
 
@@ -55,6 +54,14 @@ func NewServer(db *gorm.DB) *Server {
 	}
 }
 
+func adaptHTTPHandler(h http.Handler) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		handler := fasthttpadaptor.NewFastHTTPHandler(h)
+		handler(c.Context())
+		return nil
+	}
+}
+
 func (s *Server) Init() *fiber.App {
 	basicAuthMiddleware := basicauth.Config{
 		Users: map[string]string{
@@ -65,10 +72,12 @@ func (s *Server) Init() *fiber.App {
 	apis := s.fib.Group("/apis")
 	apis.Get("/monitor", basicauth.New(basicAuthMiddleware), monitor.New(monitor.Config{Title: "Monitor Page"}))
 
-	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	// gqlHandler := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 
-	http.Handle("/apis", playground.Handler("GraphQL playground", "/apis/query"))
-	http.Handle("/apis/query", srv)
+	playgroundHandler := playground.Handler("GraphQL playground", "/apis/query")
+
+	apis.All("/playground", adaptHTTPHandler(playgroundHandler))
+	// apis.All("/query", adaptHTTPHandler(gqlHandler))
 
 	return s.fib
 }
